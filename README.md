@@ -8,4 +8,4 @@ Tasks:
 - Structure the section into two columns.
 3. Create a Simple Table
 4. Footer Section
--Add copyright text.
+- Add copyright text.
