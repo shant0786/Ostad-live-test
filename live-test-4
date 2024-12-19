@@ -1,0 +1,43 @@
+const mongoose = require("mongoose");
+const DataSchema = mongoose.Schema(
+  {
+    firstName: { type: String },
+    lastName: { type: String },
+    rollNumber: { type: String },
+    phoneNumber: { type: String },
+    password: { type: String },
+  },
+  { versionKey: false, timestamps: true }
+);
+const studentModel = mongoose.model("students", DataSchema);
+module.exports = studentModel;
+
+// Solves
+
+// 1.Now generate the codes on how to Create a student.
+const saveData = req.body;
+const registerData = await studentModel.create(saveData);
+return res.status(201).json(registerData);
+
+// 2.Generate the codes for how to Read the data of a single student.
+const searchStudent_id = req.headers["student_id"] || req.params.student_id;
+const searchData = await studentModel.findOne({ _id: searchStudent_id });
+return res.status(200).json(searchData);
+//or
+const searchStudentData = req.body;
+const searchData2 = await UsersModel.findOne(searchStudentData);
+return res.status(200).json(searchData2);
+
+// 3.Generate codes on how to Delete a student based on a specific ID.
+const deleteStudent_id = req.headers["student_id"] || req.params.student_id;
+const deletedData = await studentModel.deleteOne({ _id: deleteStudent_id });
+return res.status(200).json(deletedData);
+
+// 4.Generate codes on how to Update a student based on a specific ID
+const updateStudent_id = req.headers["student_id"] || req.params.student_id;
+const updateData = req.body;
+const updatedStudent = await studentModel.updateOne(
+  { _id: updateStudent_id },
+  updateData
+);
+return res.status(200).json(updatedStudent);
